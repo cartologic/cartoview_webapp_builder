@@ -7,8 +7,8 @@ export default class EditService {
   save(instanceConfig, id) {
     console.log(id);
     const url = id
-      ? this.baseUrl + "apps/cartoview_geonode_viewer/"+id+"/edit"
-      : this.baseUrl + "apps/cartoview_geonode_viewer/new"
+      ? this.baseUrl + "apps/cartoview_webapp_builder/"+id+"/edit"
+      : this.baseUrl + "apps/cartoview_webapp_builder/new"
       console.log(url);
     return fetch(hasTrailingSlash(url) ? url : url+"/" , {
       method: 'POST',

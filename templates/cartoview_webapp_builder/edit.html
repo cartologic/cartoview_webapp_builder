@@ -23,7 +23,7 @@
 
 {% endblock %}
 {% block extra_script %}
-    <script src="{{ STATIC_URL }}cartoview_geonode_viewer/dist/config.bundle.js"></script>
+    <script src="{{ STATIC_URL }}cartoview_webapp_builder/dist/config.bundle.js"></script>
     <script>
 
   {% if instance %}
@@ -36,7 +36,7 @@
   var abstract = " {% spaceless %}{{ instance.abstract|title }}{% endspaceless %} ";
   {% endif %}
     var username="{{instance.owner.username}}"
-    var viewer=new Viewer('root',{'instance':{map:{id:map_id,title:title,abstract:abstract},id:instance_id,config:appConfig},'urls':{'resources_url':"/api/maps","view":"/apps/cartoview_geonode_viewer/"+instance_id+"/view/"},'limit':9},username);
+    var viewer=new Viewer('root',{'instance':{map:{id:map_id,title:title,abstract:abstract},id:instance_id,config:appConfig},'urls':{'resources_url':"/api/maps","view":"/apps/cartoview_webapp_builder/"+instance_id+"/view/"},'limit':9},username);
     viewer.view();
     </script>
     <div id="myModal" class="modal fade" role="dialog">

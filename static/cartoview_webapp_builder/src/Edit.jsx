@@ -122,7 +122,7 @@ export default class Edit extends Component {
             this.setState({
               config: Object.assign(this.state.config, config)
             },()=>{
-              this.editService.save(this.state.config,this.props.config.instance ? this.props.config.instance.id : undefined).then((res)=>window.location.href="/apps/cartoview_geonode_viewer/"+res.id+"/view")
+              this.editService.save(this.state.config,this.props.config.instance ? this.props.config.instance.id : undefined).then((res)=>window.location.href="/apps/cartoview_webapp_builder/"+res.id+"/view")
             })
           },
           onPrevious: () => {this.onPrevious()}

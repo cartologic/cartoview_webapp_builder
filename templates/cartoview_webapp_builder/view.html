@@ -9,7 +9,7 @@
     <title>{{ instance.title }}</title>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en,Object.assign"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="{{ STATIC_URL }}cartoview_geonode_viewer/resources/ol3-cesium/Cesium/Cesium.js" type="text/javascript"
+    <script src="{{ STATIC_URL }}cartoview_webapp_builder/resources/ol3-cesium/Cesium/Cesium.js" type="text/javascript"
             charset="utf-8"></script>
 <style>
 .no-js #loader { display: none;  }
@@ -21,7 +21,7 @@
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-	background: url({{ STATIC_URL }}cartoview_geonode_viewer/pre_loading.gif) center no-repeat #fff;
+	background: url({{ STATIC_URL }}cartoview_webapp_builder/pre_loading.gif) center no-repeat #fff;
 }
 </style>
 </head>
@@ -38,9 +38,9 @@
 </script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="{{ STATIC_URL }}cartoview_geonode_viewer/src/jquery.ui.touch-punch.min.js"></script>
+<script src="{{ STATIC_URL }}cartoview_webapp_builder/src/jquery.ui.touch-punch.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
-<script src="{{ STATIC_URL }}cartoview_geonode_viewer/dist/Viewer.bundle.js"></script>
+<script src="{{ STATIC_URL }}cartoview_webapp_builder/dist/Viewer.bundle.js"></script>
 <script>
     $(window).load(function() {
     $(".se-pre-con").fadeOut("slow");;
