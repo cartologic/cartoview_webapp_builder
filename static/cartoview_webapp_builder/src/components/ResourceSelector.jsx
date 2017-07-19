@@ -64,7 +64,9 @@ export default class ResourceSelector extends Component {
 
   handleUserMapsChecked() {
     const flag_maps=this.state.mymaps
-    this.setState({mymaps:!flag_maps},()=>this.loadResources(0));
+    this.setState({mymaps:!flag_maps},()=>{
+      this.props.selectMap(undefined)
+      this.loadResources(0)});
   }
 
 
@@ -107,24 +109,17 @@ export default class ResourceSelector extends Component {
     return (
       <div>
         <div className="row">
+          <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <h4>{"Select Map "}</h4>
+          </div>
 
-        <div className="row">
-          <Search
-            username = {this.state.mymaps===true?this.props.username:null}
-            searchResources={(mapTitle)=>{this.searchResources(mapTitle)}}/>
-        </div>
-
-        <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <h4>{"Select Map "}</h4>
-        </div>
-
-        <div className="col-xs-4 col-sm-8 col-md-4 col-lg-4">
-          {(this.props.instance ? this.props.instance : false)
-            ? <button className="btn btn-primary pull-right"
-                onClick={() => this.props.onComplete()}>Next</button>
-              : <button className="btn btn-primary pull-right"
-                onClick={() => this.props.onComplete()} disabled>Next</button>}
-        </div>
+          <div className="col-xs-4 col-sm-8 col-md-4 col-lg-4">
+            {(this.props.instance ? this.props.instance : false)
+              ? <button className="btn btn-primary pull-right"
+                  onClick={() => this.props.onComplete()}>Next</button>
+                : <button className="btn btn-primary pull-right"
+                  onClick={() => this.props.onComplete()} disabled>Next</button>}
+          </div>
         </div>
         <hr></hr>
 
@@ -139,10 +134,9 @@ export default class ResourceSelector extends Component {
           </div>
 
           <div className="col-xs-12 col-sm-6 col-md-8 col-lg-8">
-            <input type="text"
-              className="form-control" ref="search" defaultValue={''}
-              onChange={this.handleSearch.bind(this)}
-              placeholder="Search by title"/>
+            <Search
+              username = {this.state.mymaps===true?this.props.username:null}
+              searchResources={(mapTitle)=>{this.searchResources(mapTitle)}} />
           </div>
         </div>
 
