@@ -29,6 +29,7 @@ export default class Edit extends Component {
     this.setState({step});
   }
 
+
   onPrevious(){
     let {step} = this.state;
     this.goToStep(step-=1)

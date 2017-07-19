@@ -5,6 +5,8 @@ import Spinner from 'react-spinkit'
 import Switch from 'react-toggle-switch'
 import 'react-toggle-switch/dist/css/switch.min.css'
 
+import Search from "./Search.jsx";
+
 
 export default class ResourceSelector extends Component {
   constructor(props) {
@@ -66,6 +68,22 @@ export default class ResourceSelector extends Component {
   }
 
 
+  searchResources(mapTitle){
+    if(mapTitle){
+      let url = `/api/maps/?&title__icontains=${mapTitle}`
+      fetch(url, {credentials: 'include',})
+      .then((res) => res.json())
+      .then((resources) => {
+        this.setState({resources:resources.objects, showPagination: false})
+      })
+    }
+    else{
+      // clear button
+      this.setState({showPagination: true}, ()=>this.loadResources())
+    }
+  }
+
+
   handleSearch() {
     if (this.refs.search.value != '') {
       this.setState({loading: true});
@@ -89,17 +107,24 @@ export default class ResourceSelector extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-            <h4>{"Select Map "}</h4>
-          </div>
 
-          <div className="col-xs-4 col-sm-8 col-md-4 col-lg-4">
-            {(this.props.instance ? this.props.instance : false)
-              ? <button className="btn btn-primary pull-right"
-                  onClick={() => this.props.onComplete()}>Next</button>
-                : <button className="btn btn-primary pull-right"
-                  onClick={() => this.props.onComplete()} disabled>Next</button>}
-          </div>
+        <div className="row">
+          <Search
+            username = {this.state.mymaps===true?this.props.username:null}
+            searchResources={(mapTitle)=>{this.searchResources(mapTitle)}}/>
+        </div>
+
+        <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <h4>{"Select Map "}</h4>
+        </div>
+
+        <div className="col-xs-4 col-sm-8 col-md-4 col-lg-4">
+          {(this.props.instance ? this.props.instance : false)
+            ? <button className="btn btn-primary pull-right"
+                onClick={() => this.props.onComplete()}>Next</button>
+              : <button className="btn btn-primary pull-right"
+                onClick={() => this.props.onComplete()} disabled>Next</button>}
+        </div>
         </div>
         <hr></hr>
 
