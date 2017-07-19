@@ -42,10 +42,10 @@ export default class Reporting extends Component {
     return (
       <div className="row">
         <div className="row">
-          <div className="col-xs-12 col-md-4">
+          <div className="col-xs-6 col-md-4">
             <h4>{'Reporting'}</h4>
           </div>
-          <div className="col-xs-4 col-md-8">
+          <div className="col-xs-6 col-md-8">
             <div className="btn-group" style={{float: "right"}}>
               <button type='button' className="btn btn-primary"
                 onClick={() => this.props.onPrevious()}>Previous</button>

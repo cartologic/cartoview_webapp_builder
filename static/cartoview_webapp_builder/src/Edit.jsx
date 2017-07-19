@@ -37,7 +37,6 @@ export default class Edit extends Component {
 
 
   render() {
-    console.log("state:",this.state);
     var {step} = this.state
     const steps = [{
         label: "Select Map",
@@ -104,7 +103,7 @@ export default class Edit extends Component {
             this.setState({
               config: Object.assign(this.state.config, config)
             },()=>{
-              console.log(this.state.config);
+              // console.log(this.state.config);
             })
             this.goToStep(++step)
           },
@@ -129,7 +128,7 @@ export default class Edit extends Component {
             this.setState({
               config: Object.assign(this.state.config, config)
             },()=>{
-              console.log(this.state.config);
+              // console.log(this.state.config);
             })
             this.goToStep(++step)
           },

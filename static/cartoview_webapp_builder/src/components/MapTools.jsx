@@ -12,7 +12,6 @@ const Form = t.form.Form;
 export default class MapTools extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props);
     this.state = {
       defaultconf: {
         showAddLayerModal: this.props.config
@@ -44,7 +43,7 @@ export default class MapTools extends Component {
     return (
       <div className="row">
         <div className="row">
-          <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+          <div className="col-xs-6 col-sm-8 col-md-8 col-lg-8">
             <h4>{'Map Tools'}</h4>
           </div>
 

@@ -131,7 +131,7 @@ export default class BasicConfig extends Component {
     return (
       <div className="row">
         <div className="row">
-          <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+          <div className="col-xs-6 col-sm-8 col-md-8 col-lg-8">
             <h4>{'Navigation Tools'}</h4>
           </div>
 

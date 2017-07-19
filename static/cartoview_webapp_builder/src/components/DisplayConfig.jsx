@@ -6,7 +6,7 @@ export default class Reporting extends Component {
     super(props)
     this.state = {
       themeColor: "#009688"
-    }
+      }
     }
 
 
@@ -26,24 +26,24 @@ export default class Reporting extends Component {
     return (
       <div className="row">
         <div className="row">
-          <div className="col-xs-12 col-md-4">
+          <div className="col-xs-5 col-md-4">
             <h4>{'Select Theme Color '}</h4>
           </div>
-          <div className="col-xs-4 col-md-8">
+          <div className="col-xs-7 col-md-8">
             {this.props.id &&
               <a
               style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
-              className="btn btn-primary pull-right" href={this.props.urls.view}>
+              className="btn btn-primary btn-sm pull-right" href={this.props.urls.view}>
               View
             </a>}
 
             <button
               style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
-              className="btn btn-primary pull-right" onClick={this.save.bind(this)}>Save</button>
+              className="btn btn-primary btn-sm pull-right" onClick={this.save.bind(this)}>Save</button>
 
             <button
               style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
-              className="btn btn-primary pull-right"
+              className="btn btn-primary btn-sm pull-right"
               onClick={() => this.props.onPrevious()}>Previous</button>
           </div>
         </div>
@@ -52,6 +52,7 @@ export default class Reporting extends Component {
         <div className="row">
           <div className="col-xs-12 col-md-6">
             <div className="dropdown">
+              <h5>Select Color</h5>
               <button
                 style={{width:"100%"}}
                 className="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
