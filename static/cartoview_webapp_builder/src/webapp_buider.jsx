@@ -98,12 +98,38 @@ class CartoviewViewer extends React.Component {
 
   componentWillMount() {
     this.updateMap(this.props);
+    // console.log(appConfig.themeColor)
+
   }
+  // componentDidMount()
+  //   console.log(appConfig.themeColor)
+  //
+  // }
 
   getChildContext() {
-    return {muiTheme: getMuiTheme(CustomTheme)};
-  }
 
+
+switch (appConfig.themeColor) {
+    case "#607D8B":
+                      return {
+
+                       muiTheme: getMuiTheme(CustomTheme.grey)};
+
+                    break;
+    case "#009688": return {
+
+                    muiTheme: getMuiTheme(CustomTheme.teal)};
+                    break;
+    case "#3f51B5": return {
+
+                    muiTheme: getMuiTheme(CustomTheme.indigo)};
+                    break;
+
+   default:
+                  console.log("default")
+                   return {muiTheme: getMuiTheme(CustomTheme.blue)};
+                }
+}
   componentWillReceiveProps(props) {
     this.updateMap(props);
   }
