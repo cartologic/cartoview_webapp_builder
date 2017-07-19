@@ -45,19 +45,18 @@ export default class MapTools extends Component {
       <div className="row">
         <div className="row">
           <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-            <h4>{'Map Assistive Tools'}</h4>
+            <h4>{'Map Tools'}</h4>
           </div>
 
-          <div className="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-            <button
-              className="btn btn-primary pull-right"
-              onClick={() => this.props.onPrevious()}>Previous</button>
-          </div>
+          <div className="col-xs-6 col-md-4">
+            <div className="btn-group" style={{float: "right"}}>
+              <button type='button' className="btn btn-primary"
+                onClick={() => this.props.onPrevious()}>Previous</button>
 
-          <div className="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-            <button className="btn btn-primary pull-right" onClick={this.save.bind(this)}>Next</button>
+              <button type='button' className="btn btn-primary"
+                onClick={this.save.bind(this)}>Next</button>
+            </div>
           </div>
-
         </div>
         <hr></hr>
         <Form ref="form" value={this.state.defaultconf} type={mapConfig}/>

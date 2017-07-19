@@ -42,24 +42,30 @@ export default class Reporting extends Component {
     return (
       <div className="row">
         <div className="row">
-          <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+          <div className="col-xs-12 col-md-4">
             <h4>{'Reporting'}</h4>
           </div>
+          <div className="col-xs-4 col-md-8">
+            {this.props.id &&
+              <a
+              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
+              className="btn btn-primary pull-right" href={this.props.urls.view}>
+              View
+            </a>}
 
-          <div className="col-xs-4 col-sm-4 col-md-2 col-lg-2">
             <button
+              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
+              className="btn btn-primary pull-right" onClick={this.save.bind(this)}>Submit</button>
+
+            <button
+              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
               className="btn btn-primary pull-right"
               onClick={() => this.props.onPrevious()}>Previous</button>
           </div>
         </div>
         <hr></hr>
+
         <Form ref="form" value={this.state.defaultconf} type={mapConfig}/>
-          <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <button className="btn btn-primary pull-right" onClick={this.save.bind(this)}>Submit</button>
-          </div>
-          {this.props.id&&<div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <a className="btn btn-primary" href={this.props.urls.view}>View</a>
-          </div>}
       </div>
     )
   }

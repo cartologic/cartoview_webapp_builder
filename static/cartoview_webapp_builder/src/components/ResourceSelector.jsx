@@ -4,6 +4,8 @@ import Img from 'react-image';
 import Spinner from 'react-spinkit'
 import Switch from 'react-toggle-switch'
 import 'react-toggle-switch/dist/css/switch.min.css'
+
+
 export default class ResourceSelector extends Component {
   constructor(props) {
     super(props);
@@ -60,20 +62,20 @@ export default class ResourceSelector extends Component {
 
   handleUserMapsChecked() {
     const flag_maps=this.state.mymaps
-    // console.log("before",flag_maps);
     this.setState({mymaps:!flag_maps},()=>this.loadResources(0));
-    // console.log("after",flag_maps);
   }
 
 
   handleSearch() {
     if (this.refs.search.value != '') {
-      this.setState({loading: true})
+      this.setState({loading: true});
+
       let userMapsFilter = this.state.mymaps
         ? ("&" +
         "owner__username" +
         "=" + this.props.username + "")
         : "";
+
       fetch(this.props.resourcesUrl + "?" + "title__icontains" + "=" + this.refs.search.value + userMapsFilter).then((response) => response.json()).then((data) => {
         this.setState({resources: data.objects, loading: false})
       }).catch((error) => {
@@ -95,7 +97,7 @@ export default class ResourceSelector extends Component {
             {(this.props.instance ? this.props.instance : false)
               ? <button className="btn btn-primary pull-right"
                   onClick={() => this.props.onComplete()}>Next</button>
-              : <button className="btn btn-primary pull-right"
+                : <button className="btn btn-primary pull-right"
                   onClick={() => this.props.onComplete()} disabled>Next</button>}
           </div>
         </div>
@@ -143,16 +145,27 @@ export default class ResourceSelector extends Component {
               </div>
 
               <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 resource-box-text">
-                <ul className="list-group">
-                  <li className="list-group-item">title: {resource.title}</li>
-                  <li className="list-group-item">
-                    abstract: {resource.abstract.length > 30
-                      ? resource.abstract.substr(0, 30) + '...'
-                      : resource.abstract}</li>
-                  <li className="list-group-item">
-                    owner: {resource.owner__username}
-                  </li>
-                </ul>
+                <h4 style={{marginTop: "2%"}}>{resource.title}</h4>
+                <hr></hr>
+                <p>
+                  {resource.abstract.length > 30
+                    ? resource.abstract.substr(0, 30) + '...'
+                    : resource.abstract}
+                </p>
+                <div className="row">
+                  <div className="col-md-4">
+                    <p>owner: {resource.owner__username}</p>
+                  </div>
+                  <div className="col-md-8">
+                    <a type="button"
+                      href={`/maps/${resource.id}`}
+                      target="_blank"
+                      className="btn btn-primary"
+                      style={{margin: "5px", float: "right"}}>
+                      Map Details
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           )

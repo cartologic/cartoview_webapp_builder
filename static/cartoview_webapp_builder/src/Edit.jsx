@@ -72,7 +72,7 @@ export default class Edit extends Component {
           onPrevious: () => {this.onPrevious()}
         }
       },{
-        label: "Map Navigation Tools",
+        label: "Navigation Tools",
         component: BasicConfig,
         props: {
           instance: this.state.selectedResource,
@@ -88,7 +88,7 @@ export default class Edit extends Component {
           onPrevious: () => {this.onPrevious()}
         }
       },{
-        label: "Map Assistive Tools",
+        label: "Map Tools",
         component: MapTools,
         props: {
           instance: this.state.selectedResource,
