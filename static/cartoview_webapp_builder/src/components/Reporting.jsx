@@ -46,21 +46,13 @@ export default class Reporting extends Component {
             <h4>{'Reporting'}</h4>
           </div>
           <div className="col-xs-4 col-md-8">
-            {this.props.id &&
-              <a
-              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
-              className="btn btn-primary pull-right" href={this.props.urls.view}>
-              View
-            </a>}
+            <div className="btn-group" style={{float: "right"}}>
+              <button type='button' className="btn btn-primary"
+                onClick={() => this.props.onPrevious()}>Previous</button>
 
-            <button
-              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
-              className="btn btn-primary pull-right" onClick={this.save.bind(this)}>Submit</button>
-
-            <button
-              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
-              className="btn btn-primary pull-right"
-              onClick={() => this.props.onPrevious()}>Previous</button>
+              <button type='button' className="btn btn-primary"
+                onClick={this.save.bind(this)}>Next</button>
+            </div>
           </div>
         </div>
         <hr></hr>

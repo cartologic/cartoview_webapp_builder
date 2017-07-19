@@ -9,9 +9,9 @@ import MapBasicConfig from './components/MapBasicConfig.jsx'
 import BasicConfig from './components/BasicConfig.jsx'
 import MapTools from './components/MapTools.jsx'
 import Reporting from './components/Reporting.jsx'
+import DisplayConfig from './components/DisplayConfig.jsx'
 
 import EditService from './services/editService.jsx'
-
 
 export default class Edit extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class Edit extends Component {
     this.state = {
       step: 0,
       config: {},
-      selectedResource: this.props.config.instance ? this.props.config.instance.map:undefined
+      selectedResource: this.props.config.instance ? this.props.config.instance.map:undefined,
     }
     this.editService = new EditService({baseUrl: '/'})
   }
@@ -37,6 +37,7 @@ export default class Edit extends Component {
 
 
   render() {
+    console.log("state:",this.state);
     var {step} = this.state
     const steps = [{
         label: "Select Map",
@@ -93,7 +94,9 @@ export default class Edit extends Component {
         component: MapTools,
         props: {
           instance: this.state.selectedResource,
+
           config: this.props.config.instance ? this.props.config.instance.config : undefined,
+
           onComplete: (basicConfig) => {
             var {step,config} = this.state;
             let newConfig=Object.assign(config.config, basicConfig)
@@ -112,18 +115,50 @@ export default class Edit extends Component {
         component: Reporting,
         props: {
           instance: this.state.selectedResource,
+
           config: this.props.config.instance ? this.props.config.instance.config : undefined,
+
           id:this.props.config.instance ? this.props.config.instance.id:undefined,
+
           urls:this.props.config.urls,
+
           onComplete: (basicConfig) => {
-            console.log(this.props.instance ? this.props.config.instance.id:undefined);
             var {step,config} = this.state;
             let newConfig=Object.assign(config.config, basicConfig)
             config.config=newConfig
             this.setState({
               config: Object.assign(this.state.config, config)
             },()=>{
-              this.editService.save(this.state.config,this.props.config.instance ? this.props.config.instance.id : undefined).then((res)=>window.location.href="/apps/cartoview_webapp_builder/"+res.id+"/view")
+              console.log(this.state.config);
+            })
+            this.goToStep(++step)
+          },
+
+          onPrevious: () => {this.onPrevious()}
+        }
+      },
+      {
+        label: "Display",
+        component: DisplayConfig,
+        props: {
+          instance: this.state.selectedResource,
+
+          config: this.props.config.instance ? this.props.config.instance.config : undefined,
+
+          id:this.props.config.instance ? this.props.config.instance.id:undefined,
+
+          urls:this.props.config.urls,
+
+          onComplete: (basicConfig) => {
+            console.log(this.props.instance ? this.props.config.instance.id:undefined);
+
+            var {step,config} = this.state;
+            let newConfig=Object.assign(config.config, basicConfig)
+            config.config=newConfig
+            this.setState({
+              config: Object.assign(this.state.config, config)
+            },()=>{
+              this.editService.save(this.state.config, this.props.config.instance ? this.props.config.instance.id : undefined).then((res)=>window.location.href="/apps/cartoview_webapp_builder/"+res.id+"/view")
             })
           },
           onPrevious: () => {this.onPrevious()}
