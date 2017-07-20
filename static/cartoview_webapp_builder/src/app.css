@@ -155,8 +155,8 @@ html, body {
 
 div.layer-tree-panel {
   position: fixed;
-  margin-left: -60%;
-  margin-top: 20%;
+  margin-left: -30%;
+  
 }
 
 .attributes-table {
