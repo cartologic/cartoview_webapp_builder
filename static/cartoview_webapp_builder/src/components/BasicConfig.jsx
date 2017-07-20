@@ -29,31 +29,31 @@ const mapConfig = t.struct({
 const options = {
   fields: {
     showGeoLocation: {
-      label: "Show Geo Location"
+      label: "Geo Location"
     },
     show3D: {
-      label: "Show 3D"
+      label: "3D"
     },
     showZoomControls: {
-      label: "Show Zoom Buttons"
+      label: "Zoom Buttons"
     },
     showNorth: {
-      label: "Show North Button"
+      label: "North Button"
     },
     showMousePostion: {
-      label: "Show Mouse Location"
+      label: "Mouse Location"
     },
     showLayerSwitcher: {
-      label: "Show Layer Switcher Button"
+      label: "Layer Switcher Button"
     },
     showHome: {
-      label: "Show Initial Extent Button"
+      label: "Initial Extent Button"
     },
     showBasemapSwitcher: {
-      label: "Show Base Switcher Button"
+      label: "Base Switcher Button"
     },
     showLegend: {
-      label: "Show Layer Legend"
+      label: "Layer Legend"
     },
   }
 };
@@ -131,20 +131,20 @@ export default class BasicConfig extends Component {
     return (
       <div className="row">
         <div className="row">
-          <div className="col-xs-6 col-sm-8 col-md-8 col-lg-8">
+          <div className="col-xs-5 col-md-4">
             <h4>{'Navigation Tools'}</h4>
           </div>
+          <div className="col-xs-7 col-md-8">
+            <button
+              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
+              className="btn btn-primary btn-sm pull-right" onClick={this.save.bind(this)}>{"next >>"}</button>
 
-          <div className="col-xs-6 col-md-4">
-            <div className="btn-group" style={{float: "right"}}>
-              <button type='button' className="btn btn-primary"
-                onClick={() => this.props.onPrevious()}>Previous</button>
-
-              <button type='button' className="btn btn-primary"
-                onClick={this.save.bind(this)}>Next</button>
+            <button
+              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
+              className="btn btn-primary btn-sm pull-right"
+              onClick={() => this.props.onPrevious()}>{"<< Previous"}</button>
             </div>
           </div>
-        </div>
         <hr></hr>
 
         <Form

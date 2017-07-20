@@ -6,6 +6,22 @@ const mapConfig = t.struct({
   showMeasure: t.Boolean,
   showAttributesTable: t.Boolean
 });
+const options = {
+  fields: {
+    showAddLayerModal: {
+      label: "Layer Model"
+    },
+    showLoadingPanel: {
+      label: "Loading Panel"
+    },
+    showMeasure: {
+      label: "Measure"
+    },
+    showAttributesTable: {
+      label: "Attributes Table"
+    },
+  }
+};
 const Form = t.form.Form;
 
 
@@ -43,22 +59,24 @@ export default class MapTools extends Component {
     return (
       <div className="row">
         <div className="row">
-          <div className="col-xs-6 col-sm-8 col-md-8 col-lg-8">
-            <h4>{'Map Tools'}</h4>
+          <div className="col-xs-5 col-md-4">
+            <h4>{'Map Tools '}</h4>
           </div>
+          <div className="col-xs-7 col-md-8">
+            <button
+              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
+              className="btn btn-primary btn-sm pull-right" onClick={this.save.bind(this)}>{"next >>"}</button>
 
-          <div className="col-xs-6 col-md-4">
-            <div className="btn-group" style={{float: "right"}}>
-              <button type='button' className="btn btn-primary"
-                onClick={() => this.props.onPrevious()}>Previous</button>
-
-              <button type='button' className="btn btn-primary"
-                onClick={this.save.bind(this)}>Next</button>
+            <button
+              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
+              className="btn btn-primary btn-sm pull-right"
+              onClick={() => this.props.onPrevious()}>{"<< Previous"}</button>
             </div>
           </div>
-        </div>
         <hr></hr>
-        <Form ref="form" value={this.state.defaultconf} type={mapConfig}/>
+        <Form ref="form"
+          options={options}
+          value={this.state.defaultconf} type={mapConfig}/>
       </div>
     )
   }
