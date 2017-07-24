@@ -63,7 +63,6 @@ export default class Edit extends Component {
         props: {
           state: this.state,
           keywords: this.props.keywords,
-          access: this.props.access,
           urls: this.props.config.urls,
           instance: this.state.selectedResource,
           config: this.props.config.instance
@@ -91,7 +90,6 @@ export default class Edit extends Component {
             : undefined,
           onComplete: (basicConfig) => {
             var {step} = this.state;
-
             this.setState({
               config: Object.assign(this.state.config, basicConfig)
             })

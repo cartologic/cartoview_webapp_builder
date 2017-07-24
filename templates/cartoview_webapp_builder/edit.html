@@ -35,7 +35,6 @@
     var geoserver_url = "{{ GEOSERVER_BASE_URL }}";
     var abstract = " {% spaceless %}{{ instance.abstract|title }}{% endspaceless %} ";
     var keywords = {{keywords|safe}}
-    var access = "{{access}}"
     {% endif %}
 
     var username = "{{instance.owner.username}}";
@@ -54,7 +53,7 @@
         "view": "/apps/cartoview_webapp_builder/" + instance_id + "/view/"
       },
       'limit': 9
-    }, username, keywords, access);
+    }, username, keywords);
     viewer.view();
     </script>
     <div id="myModal" class="modal fade" role="dialog">

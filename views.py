@@ -17,9 +17,11 @@ def save(request, instance_id=None, app_name=APP_NAME):
     data = json.loads(request.body)
     map_id = data.get('map', None)
     title = data.get('title', "")
+    config = data.get('config', None)
+    access = data.get('access', None)
+    config.update(access=access)
     config = json.dumps(data.get('config', None))
     abstract = data.get('abstract', "")
-    access = data.get('access', None)
     keywords = data.get('keywords', [])
 
     if instance_id is None:
@@ -48,13 +50,7 @@ def save(request, instance_id=None, app_name=APP_NAME):
                         'publish_resourcebase',
                     ],
                     'AnonymousUser': [
-                        # 'view_resourcebase',
-                        # 'download_resourcebase',
-                        # 'change_resourcebase_metadata',
-                        # 'change_resourcebase',
-                        # 'delete_resourcebase',
                         'change_resourcebase_permissions',
-                        # 'publish_resourcebase',
                     ],
                 }
             }
@@ -97,6 +93,9 @@ def new(request, template="%s/new.html" % APP_NAME, app_name=APP_NAME, context={
 def edit(request, instance_id, template="%s/edit.html" % APP_NAME, context={}):
     instance = _resolve_appinstance(
         request, instance_id, 'base.view_resourcebase', _PERMISSION_MSG_VIEW)
+
+    # print instance.config
+    # print type(instance.config)
 
     if request.method == 'POST':
         return save(request, instance_id)

@@ -33,7 +33,9 @@ export default class MapBasicConfig extends Component {
           : this.props.instance.abstract || "No Abstract Provided",
         access: this.props.state.config.access
           ? this.props.state.config.access
-          : 'private'
+          : this.props.config
+            ? this.props.config.access
+            : 'private'
       }
     }
   }
