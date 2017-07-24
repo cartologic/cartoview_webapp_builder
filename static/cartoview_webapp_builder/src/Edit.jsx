@@ -171,9 +171,13 @@ export default class Edit extends Component {
 
           id: this.props.config.instance
             ? this.props.config.instance.id
-            : undefined,
+            : this.state.id
+              ? this.state.id
+              : undefined,
 
           urls: this.props.config.urls,
+
+          success: this.state.success,
 
           onComplete: (basicConfig) => {
             // console.log(this.props.instance
@@ -186,10 +190,15 @@ export default class Edit extends Component {
             this.setState({
               config: Object.assign(this.state.config, config)
             }, () => {
-              this.editService.save(this.state.config, this.props.config.instance
-                ? this.props.config.instance.id
-                : undefined).then((res) => {
+              this.editService.save(this.state.config, this.state.insctanceID
+                ? this.state.id
+                : this.props.config.instance
+                  ? this.props.config.instance.id
+                  : undefined).then((res) => {
                 console.log("RES", res);
+                if (res.success === true) {
+                  this.setState({success: true, id: res.id})
+                }
                 // window.location.href="/apps/cartoview_webapp_builder/"+res.id+"/view"
               })
             })
