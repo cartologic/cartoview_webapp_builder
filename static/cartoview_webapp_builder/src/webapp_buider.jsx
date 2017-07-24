@@ -108,28 +108,33 @@ class CartoviewViewer extends React.Component {
 
   getChildContext() {
 
+    switch (appConfig.themeColor) {
+      case "#607D8B":
+        return {
 
-switch (appConfig.themeColor) {
-    case "#607D8B":
-                      return {
+          muiTheme: getMuiTheme(CustomTheme.grey)
+        };
 
-                       muiTheme: getMuiTheme(CustomTheme.grey)};
+        break;
+      case "#009688":
+        return {
 
-                    break;
-    case "#009688": return {
+          muiTheme: getMuiTheme(CustomTheme.teal)
+        };
+        break;
+      case "#3f51B5":
+        return {
 
-                    muiTheme: getMuiTheme(CustomTheme.teal)};
-                    break;
-    case "#3f51B5": return {
+          muiTheme: getMuiTheme(CustomTheme.indigo)
+        };
+        break;
 
-                    muiTheme: getMuiTheme(CustomTheme.indigo)};
-                    break;
-
-   default:
-                  console.log("default")
-                   return {muiTheme: getMuiTheme(CustomTheme.blue)};
-                }
-}
+      default:
+        return {
+          muiTheme: getMuiTheme(CustomTheme.blue)
+        };
+    }
+  }
   componentWillReceiveProps(props) {
     this.updateMap(props);
   }
@@ -250,11 +255,11 @@ switch (appConfig.themeColor) {
     const layerSwitcher = appConfig.showLayerSwitcher
       ? <LayerList allowFiltering={true} showOpacity={true} allowStyling={true} downloadFormat={'GPX'} showDownload={true} allowRemove={true} showGroupContent={true} showZoomTo={true} allowLabeling={true} allowEditing={true} allowReordering={true} showTable={true} handleResolutionChange={true} includeLegend={appConfig.showLegend} map={map}/>
       : '';
-      //TODO: ADD These options in Configration Form
-      // <Zoom duration={appConfig.zoom_config.duration} zoomInTipLabel={appConfig.zoom_config.zoomInTipLabel} zoomOutTipLabel={appConfig.zoom_config.zoomOutTipLabel} delta={appConfig.zoom_config.delta} map={map}></Zoom>
+    //TODO: ADD These options in Configration Form
+    // <Zoom duration={appConfig.zoom_config.duration} zoomInTipLabel={appConfig.zoom_config.zoomInTipLabel} zoomOutTipLabel={appConfig.zoom_config.zoomOutTipLabel} delta={appConfig.zoom_config.delta} map={map}></Zoom>
     const zoomControls = appConfig.showZoomControls
       ? <div id='zoom-buttons'>
-      <Zoom map={map}></Zoom>
+          <Zoom map={map}></Zoom>
         </div>
       : "";
     const query_panel = appConfig.showQuery
@@ -289,11 +294,11 @@ switch (appConfig.themeColor) {
           <Geolocation map={map}></Geolocation>
         </div>
       : "";
-      //TODO:ReEnable these options in configration Form
-                //<Rotate autoHide={appConfig.north_config.autoHide} map={map}></Rotate>
+    //TODO:ReEnable these options in configration Form
+    //<Rotate autoHide={appConfig.north_config.autoHide} map={map}></Rotate>
     const North = appConfig.showNorth
       ? <div id="rotate-button">
-      <Rotate autoHide={true} map={map}></Rotate>
+          <Rotate autoHide={true} map={map}></Rotate>
         </div>
       : "";
     const geocoding_paper = appConfig.showGeoCoding
@@ -328,7 +333,7 @@ switch (appConfig.themeColor) {
       ? <CartoviewAbout/>
       : <IconButton iconClassName="fa fa-globe about-ico"></IconButton>;
     const selection = <Select toggleGroup='navigation' map={map}/>
-    const navigation =<Navigation secondary={true} toggleGroup='navigation' toolId='nav'/>
+    const navigation = <Navigation secondary={true} toggleGroup='navigation' toolId='nav'/>
     const infoModal = <Dialog title={title} actions={actions} modal={false} open={this.state.infoModalOpen} onRequestClose={this.handleInfoClose}>
       {abstract}
     </Dialog>

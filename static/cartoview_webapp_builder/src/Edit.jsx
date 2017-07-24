@@ -19,32 +19,32 @@ export default class Edit extends Component {
     this.state = {
       step: 0,
       config: {},
-      selectedResource: this.props.config.instance ? this.props.config.instance.map:undefined,
+      selectedResource: this.props.config.instance
+        ? this.props.config.instance.map
+        : undefined
     }
     this.editService = new EditService({baseUrl: '/'})
   }
-
 
   goToStep(step) {
     this.setState({step});
   }
 
-
-  onPrevious(){
+  onPrevious() {
     let {step} = this.state;
-    this.goToStep(step-=1)
+    this.goToStep(step -= 1)
   }
-
 
   render() {
     var {step} = this.state
-    const steps = [{
+    const steps = [
+      {
         label: "Select Map",
         component: ResourceSelector,
         props: {
           resourcesUrl: this.props.config.urls.resources_url,
           instance: this.state.selectedResource,
-          username:this.props.username,
+          username: this.props.username,
           selectMap: (resource) => {
             this.setState({selectedResource: resource})
           },
@@ -57,31 +57,38 @@ export default class Edit extends Component {
             this.goToStep(++step)
           }
         }
-      },{
+      }, {
         label: "General ",
         component: MapBasicConfig,
         props: {
           state: this.state,
-          urls:this.props.config.urls,
+          keywords: this.props.keywords,
+          access: this.props.access,
+          urls: this.props.config.urls,
           instance: this.state.selectedResource,
-          config: this.props.config.instance ? this.props.config.instance.config : undefined,
+          config: this.props.config.instance
+            ? this.props.config.instance.config
+            : undefined,
           onComplete: (basicConfig) => {
-            console.log(basicConfig);
             let {step} = this.state;
             this.setState({
               config: Object.assign(this.state.config, basicConfig)
             })
             this.goToStep(++step)
           },
-          onPrevious: () => {this.onPrevious()}
+          onPrevious: () => {
+            this.onPrevious()
+          }
         }
-      },{
+      }, {
         label: "Navigation Tools",
         component: BasicConfig,
         props: {
           state: this.state,
           instance: this.state.selectedResource,
-          config: this.props.config.instance ? this.props.config.instance.config : undefined,
+          config: this.props.config.instance
+            ? this.props.config.instance.config
+            : undefined,
           onComplete: (basicConfig) => {
             var {step} = this.state;
 
@@ -90,85 +97,106 @@ export default class Edit extends Component {
             })
             this.goToStep(++step)
           },
-          onPrevious: () => {this.onPrevious()}
+          onPrevious: () => {
+            this.onPrevious()
+          }
         }
-      },{
+      }, {
         label: "Map Tools",
         component: MapTools,
         props: {
           state: this.state,
           instance: this.state.selectedResource,
 
-          config: this.props.config.instance ? this.props.config.instance.config : undefined,
+          config: this.props.config.instance
+            ? this.props.config.instance.config
+            : undefined,
 
           onComplete: (basicConfig) => {
-            var {step,config} = this.state;
-            let newConfig=Object.assign(config.config, basicConfig)
-            config.config=newConfig
+            var {step, config} = this.state;
+            let newConfig = Object.assign(config.config, basicConfig)
+            config.config = newConfig
             this.setState({
               config: Object.assign(this.state.config, config)
-            },()=>{
+            }, () => {
               // console.log(this.state.config);
             })
             this.goToStep(++step)
           },
-          onPrevious: () => {this.onPrevious()}
+          onPrevious: () => {
+            this.onPrevious()
+          }
         }
-      },{
+      }, {
         label: "Reporting",
         component: Reporting,
         props: {
           instance: this.state.selectedResource,
 
-          config: this.props.config.instance ? this.props.config.instance.config : undefined,
+          config: this.props.config.instance
+            ? this.props.config.instance.config
+            : undefined,
 
-          id:this.props.config.instance ? this.props.config.instance.id:undefined,
+          id: this.props.config.instance
+            ? this.props.config.instance.id
+            : undefined,
 
-          urls:this.props.config.urls,
+          urls: this.props.config.urls,
 
           onComplete: (basicConfig) => {
-            var {step,config} = this.state;
-            let newConfig=Object.assign(config.config, basicConfig)
-            config.config=newConfig
+            var {step, config} = this.state;
+            let newConfig = Object.assign(config.config, basicConfig)
+            config.config = newConfig
             this.setState({
               config: Object.assign(this.state.config, config)
-            },()=>{
+            }, () => {
               // console.log(this.state.config);
             })
             this.goToStep(++step)
           },
 
-          onPrevious: () => {this.onPrevious()}
+          onPrevious: () => {
+            this.onPrevious()
+          }
         }
-      },
-      {
+      }, {
         label: "Display",
         component: DisplayConfig,
         props: {
           instance: this.state.selectedResource,
 
-          config: this.props.config.instance ? this.props.config.instance.config : undefined,
+          config: this.props.config.instance
+            ? this.props.config.instance.config
+            : undefined,
 
-          id:this.props.config.instance ? this.props.config.instance.id:undefined,
+          id: this.props.config.instance
+            ? this.props.config.instance.id
+            : undefined,
 
-          urls:this.props.config.urls,
+          urls: this.props.config.urls,
 
           onComplete: (basicConfig) => {
-            console.log(this.props.instance ? this.props.config.instance.id:undefined);
+            // console.log(this.props.instance
+            //   ? this.props.config.instance.id
+            //   : undefined);
 
-            var {step,config} = this.state;
-            let newConfig=Object.assign(config.config, basicConfig)
-            config.config=newConfig
+            var {step, config} = this.state;
+            let newConfig = Object.assign(config.config, basicConfig)
+            config.config = newConfig
             this.setState({
               config: Object.assign(this.state.config, config)
-            },()=>{
-              this.editService.save(this.state.config, this.props.config.instance ? this.props.config.instance.id : undefined).then((res)=>{
+            }, () => {
+              this.editService.save(this.state.config, this.props.config.instance
+                ? this.props.config.instance.id
+                : undefined).then((res) => {
                 console.log("RES", res);
                 // window.location.href="/apps/cartoview_webapp_builder/"+res.id+"/view"
               })
             })
           },
-          onPrevious: () => {this.onPrevious()}
+          onPrevious: () => {
+            this.onPrevious()
+          }
         }
       }
 
