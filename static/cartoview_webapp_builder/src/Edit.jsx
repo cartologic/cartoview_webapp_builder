@@ -131,8 +131,8 @@ export default class Edit extends Component {
         label: "Reporting",
         component: Reporting,
         props: {
+          state: this.state,
           instance: this.state.selectedResource,
-
           config: this.props.config.instance
             ? this.props.config.instance.config
             : undefined,
