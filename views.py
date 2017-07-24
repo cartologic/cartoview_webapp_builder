@@ -37,34 +37,28 @@ def save(request, instance_id=None, app_name=APP_NAME):
     instance_obj.map_id = map_id
     instance_obj.save()
 
+    owner_permissions = [
+        'view_resourcebase',
+        'download_resourcebase',
+        'change_resourcebase_metadata',
+        'change_resourcebase',
+        'delete_resourcebase',
+        'change_resourcebase_permissions',
+        'publish_resourcebase',
+    ]
+
     if access == "private":
         permessions = {
                 'users': {
-                    '{}'.format(request.user): [
-                        'view_resourcebase',
-                        'download_resourcebase',
-                        'change_resourcebase_metadata',
-                        'change_resourcebase',
-                        'delete_resourcebase',
-                        'change_resourcebase_permissions',
-                        'publish_resourcebase',
-                    ],
-                    'AnonymousUser': [
-                        'change_resourcebase_permissions',
-                    ],
+                    '{}'.format(request.user): owner_permissions,
                 }
             }
     else:
         permessions = {
                 'users': {
+                    '{}'.format(request.user): owner_permissions,
                     'AnonymousUser': [
                         'view_resourcebase',
-                        'download_resourcebase',
-                        'change_resourcebase_metadata',
-                        'change_resourcebase',
-                        'delete_resourcebase',
-                        'change_resourcebase_permissions',
-                        'publish_resourcebase',
                     ],
                 }
             }
@@ -93,9 +87,6 @@ def new(request, template="%s/new.html" % APP_NAME, app_name=APP_NAME, context={
 def edit(request, instance_id, template="%s/edit.html" % APP_NAME, context={}):
     instance = _resolve_appinstance(
         request, instance_id, 'base.view_resourcebase', _PERMISSION_MSG_VIEW)
-
-    # print instance.config
-    # print type(instance.config)
 
     if request.method == 'POST':
         return save(request, instance_id)
