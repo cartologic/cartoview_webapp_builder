@@ -2,12 +2,11 @@ import React from 'react';
 import {render, findDOMNode} from 'react-dom';
 import Edit from './Edit.jsx';
 class Viewer {
-  constructor(domId, config, username, keywords, access) {
+  constructor(domId, config, username, keywords) {
     this.domId = domId;
     this.appConfig = config;
     this.username = username;
     this.keywords = keywords;
-    this.access = access;
   }
 
   set config(value) {

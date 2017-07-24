@@ -59,7 +59,7 @@ const options = {
 
 const Form = t.form.Form;
 
-export default class BasicConfig extends Component {
+export default class NavigationTools extends Component {
   constructor(props) {
     super(props)
     this.state = {

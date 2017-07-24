@@ -5,8 +5,8 @@ import Navigator from './components/Navigator.jsx'
 
 import ResourceSelector from './components/ResourceSelector.jsx'
 
-import MapBasicConfig from './components/MapBasicConfig.jsx'
-import BasicConfig from './components/BasicConfig.jsx'
+import General from './components/General.jsx'
+import NavigationTools from './components/NavigationTools.jsx'
 import MapTools from './components/MapTools.jsx'
 import Reporting from './components/Reporting.jsx'
 import DisplayConfig from './components/DisplayConfig.jsx'
@@ -59,7 +59,7 @@ export default class Edit extends Component {
         }
       }, {
         label: "General ",
-        component: MapBasicConfig,
+        component: General,
         props: {
           state: this.state,
           keywords: this.props.keywords,
@@ -81,7 +81,7 @@ export default class Edit extends Component {
         }
       }, {
         label: "Navigation Tools",
-        component: BasicConfig,
+        component: NavigationTools,
         props: {
           state: this.state,
           instance: this.state.selectedResource,
