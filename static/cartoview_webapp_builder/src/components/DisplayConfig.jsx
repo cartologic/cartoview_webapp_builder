@@ -30,9 +30,7 @@ export default class Reporting extends Component {
     return (
       <div className="row">
         <div className="row">
-          <div className="col-xs-5 col-md-4">
-            <h4>{'Display '}</h4>
-          </div>
+          <div className="col-xs-5 col-md-4"></div>
           <div className="col-xs-7 col-md-8">
             <button style={{
               display: "inline-block",
@@ -45,8 +43,12 @@ export default class Reporting extends Component {
             }} className="btn btn-primary btn-sm pull-right" onClick={() => this.props.onPrevious()}>{"<< Previous"}</button>
           </div>
         </div>
-        <div className="row">
-          <div className="col-xs-5 col-md-4"></div>
+        <div className="row" style={{
+          marginTop: "3%"
+        }}>
+          <div className="col-xs-5 col-md-4">
+            <h4>{'Display '}</h4>
+          </div>
           <div className="col-xs-7 col-md-8">
             <a style={{
               display: "inline-block",
@@ -72,6 +74,18 @@ export default class Reporting extends Component {
             }} className={this.state.success === true
               ? "btn btn-primary btn-sm pull-right disabled"
               : "btn btn-primary btn-sm pull-right"} onClick={this.save.bind(this)}>Save</button>
+
+            <p style={this.state.success == true
+              ? {
+                display: "inline-block",
+                margin: "0px 3px 0px 3px",
+                float: "right"
+              }
+              : {
+                display: "none",
+                margin: "0px 3px 0px 3px",
+                float: "right"
+              }}>App instance successfully created!</p>
           </div>
         </div>
         <hr></hr>
