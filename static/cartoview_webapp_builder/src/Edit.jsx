@@ -195,7 +195,7 @@ export default class Edit extends Component {
                 : this.props.config.instance
                   ? this.props.config.instance.id
                   : undefined).then((res) => {
-                console.log("RES", res);
+                // console.log("RES", res);
                 if (res.success === true) {
                   this.setState({success: true, id: res.id})
                 }
