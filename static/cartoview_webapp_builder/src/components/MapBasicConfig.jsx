@@ -28,8 +28,12 @@ export default class MapBasicConfig extends Component {
         title: this.props.state.config.title
           ? this.props.state.config.title
           : this.props.instance.title || "No Title Provided",
-        abstract: this.props.instance.abstract || "No Abstract Provided",
-        access: 'private'
+        abstract: this.props.state.config.abstract
+          ? this.props.state.config.abstract
+          : this.props.instance.abstract || "No Abstract Provided",
+        access: this.props.state.config.access
+          ? this.props.state.config.access
+          : 'private'
       }
     }
   }
