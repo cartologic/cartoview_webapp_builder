@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import t from 'tcomb-form';
 
+import KeywordsInput from './KeywordsInput.jsx'
 
 const Access = t.enums({
   public: 'Public',
@@ -11,7 +12,6 @@ const mapConfig = t.struct({
   title: t.String,
   abstract: t.String,
   access: Access,
-  keywords: t.maybe(t.String),
 });
 const options = {
   fields: {
@@ -20,9 +20,6 @@ const options = {
     },
     access: {
       factory: t.form.Radio
-    },
-    keywords: {
-      help: "Tip: Enter keywords as a comma separated strings Ex: 'united_states, usa'"
     },
   }
 };
@@ -34,28 +31,31 @@ export default class MapBasicConfig extends Component {
     super(props)
     this.state = {
       defaultConfig: {
-        title: this.props.instance.title || "No Title Provided",
+        title: this.props.state.config.title ? this.props.state.config.title
+        : this.props.instance.title || "No Title Provided",
         abstract: this.props.instance.abstract || "No Abstract Provided",
-        access: 'private'
-      }
+        access: 'private',
+      },
     }
   }
-
 
   save() {
     var basicConfig = this.refs.form.getValue();
     if (basicConfig) {
-      const properConfig = {
+      let properConfig = {
         title: basicConfig.title,
         abstract: basicConfig.abstract,
+        access:basicConfig.access,
+        keywords: this.keywords
       }
       this.props.onComplete(properConfig)
     }
   }
 
-
-
-
+  Keywords = []
+  updateKeywords(keywords){
+    this.keywords = keywords.map((keyword) => {return keyword.name})
+  }
 
   render() {
     return (
@@ -82,6 +82,8 @@ export default class MapBasicConfig extends Component {
           value={this.state.defaultConfig}
           type={mapConfig}
           options={options} />
+
+        <KeywordsInput updateKeywords={(keywords)=>{this.updateKeywords(keywords)}}/>
       </div>
     )
   }

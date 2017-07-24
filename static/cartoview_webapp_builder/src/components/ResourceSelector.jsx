@@ -54,6 +54,10 @@ export default class ResourceSelector extends Component {
     this.loadResources(0)
   }
 
+  componentWillUnmount() {
+    console.log("componentWillUnmount");
+  }
+
 
   handlePageClick = (data) => {
     let selected = data.selected;

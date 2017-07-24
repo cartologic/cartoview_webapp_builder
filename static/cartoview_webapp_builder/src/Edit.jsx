@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import './css/app.css'
 
-import Navigator from './components/Navigator.jsx';
+import Navigator from './components/Navigator.jsx'
 
 import ResourceSelector from './components/ResourceSelector.jsx'
 
@@ -61,9 +61,12 @@ export default class Edit extends Component {
         label: "General ",
         component: MapBasicConfig,
         props: {
+          state: this.state,
+          urls:this.props.config.urls,
           instance: this.state.selectedResource,
           config: this.props.config.instance ? this.props.config.instance.config : undefined,
           onComplete: (basicConfig) => {
+            console.log(basicConfig);
             let {step} = this.state;
             this.setState({
               config: Object.assign(this.state.config, basicConfig)
@@ -76,6 +79,7 @@ export default class Edit extends Component {
         label: "Navigation Tools",
         component: BasicConfig,
         props: {
+          state: this.state,
           instance: this.state.selectedResource,
           config: this.props.config.instance ? this.props.config.instance.config : undefined,
           onComplete: (basicConfig) => {
@@ -92,6 +96,7 @@ export default class Edit extends Component {
         label: "Map Tools",
         component: MapTools,
         props: {
+          state: this.state,
           instance: this.state.selectedResource,
 
           config: this.props.config.instance ? this.props.config.instance.config : undefined,
@@ -157,7 +162,10 @@ export default class Edit extends Component {
             this.setState({
               config: Object.assign(this.state.config, config)
             },()=>{
-              this.editService.save(this.state.config, this.props.config.instance ? this.props.config.instance.id : undefined).then((res)=>window.location.href="/apps/cartoview_webapp_builder/"+res.id+"/view")
+              this.editService.save(this.state.config, this.props.config.instance ? this.props.config.instance.id : undefined).then((res)=>{
+                console.log("RES", res);
+                // window.location.href="/apps/cartoview_webapp_builder/"+res.id+"/view"
+              })
             })
           },
           onPrevious: () => {this.onPrevious()}
