@@ -22,9 +22,8 @@ const mapConfig = t.struct({
   showGeoLocation: t.Boolean,
   show3D: t.Boolean,
   showBasemapSwitcher: t.Boolean,
-  showLegend: t.Boolean,
+  showLegend: t.Boolean
 });
-
 
 const options = {
   fields: {
@@ -54,53 +53,70 @@ const options = {
     },
     showLegend: {
       label: "Layer Legend"
-    },
+    }
   }
 };
 
-
 const Form = t.form.Form;
-
 
 export default class BasicConfig extends Component {
   constructor(props) {
     super(props)
     this.state = {
       defaultConfig: {
-        showZoomControls: this.props.config
-          ? this.props.config.showZoomControls
-          : true,
-        showNorth: this.props.config
-          ? this.props.config.showNorth
-          : true,
-        showMousePostion: this.props.config
-          ? this.props.config.showMousePostion
-          : true,
-        showHome: this.props.config
-          ? this.props.config.showHome
-          : true,
-        showGeoLocation: this.props.config
-          ? this.props.config.showGeoLocation
-          : true,
-        show3D: this.props.config
-          ? this.props.config.show3D
-          : true,
-        showGeoCoding: this.props.config
-          ? this.props.config.showGeoCoding
-          : true,
-        showLayerSwitcher: this.props.config
-          ? this.props.config.showLayerSwitcher
-          : true,
-        showBasemapSwitcher: this.props.config
-          ? this.props.config.showBasemapSwitcher
-          : true,
-        showLegend: this.props.config
-          ? this.props.config.showLegend
-          : true
+        showZoomControls: this.props.state.config.config
+          ? this.props.state.config.config.showZoomControls
+          : this.props.config
+            ? this.props.config.showZoomControls
+            : true,
+        showNorth: this.props.state.config.config
+          ? this.props.state.config.config.showNorth
+          : this.props.config
+            ? this.props.config.showNorth
+            : true,
+        showMousePostion: this.props.state.config.config
+          ? this.props.state.config.config.showMousePostion
+          : this.props.config
+            ? this.props.config.showMousePostion
+            : true,
+        showHome: this.props.state.config.config
+          ? this.props.state.config.config.showHome
+          : this.props.config
+            ? this.props.config.showHome
+            : true,
+        showGeoLocation: this.props.state.config.config
+          ? this.props.state.config.config.showGeoLocation
+          : this.props.config
+            ? this.props.config.showGeoLocation
+            : true,
+        show3D: this.props.state.config.config
+          ? this.props.state.config.config.show3D
+          : this.props.config
+            ? this.props.config.show3D
+            : true,
+        showGeoCoding: this.props.state.config.config
+          ? this.props.state.config.config.showGeoCoding
+          : this.props.config
+            ? this.props.config.showGeoCoding
+            : true,
+        showLayerSwitcher: this.props.state.config.config
+          ? this.props.state.config.config.showLayerSwitcher
+          : this.props.config
+            ? this.props.config.showLayerSwitcher
+            : true,
+        showBasemapSwitcher: this.props.state.config.config
+          ? this.props.state.config.config.showBasemapSwitcher
+          : this.props.config
+            ? this.props.config.showBasemapSwitcher
+            : true,
+        showLegend: this.props.state.config.config
+          ? this.props.state.config.config.showLegend
+          : this.props.config
+            ? this.props.config.showLegend
+            : true
       }
     }
   }
-
 
   save() {
     var basicConfig = this.refs.form.getValue();
@@ -115,17 +131,12 @@ export default class BasicConfig extends Component {
           showGeoLocation: basicConfig.showGeoLocation,
           show3D: basicConfig.show3D,
           showBasemapSwitcher: basicConfig.showBasemapSwitcher,
-          showLegend: basicConfig.showLegend,
+          showLegend: basicConfig.showLegend
         }
       }
       this.props.onComplete(properConfig)
     }
   }
-
-
-
-
-
 
   render() {
     return (
@@ -135,23 +146,20 @@ export default class BasicConfig extends Component {
             <h4>{'Navigation Tools'}</h4>
           </div>
           <div className="col-xs-7 col-md-8">
-            <button
-              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
-              className="btn btn-primary btn-sm pull-right" onClick={this.save.bind(this)}>{"next >>"}</button>
+            <button style={{
+              display: "inline-block",
+              margin: "0px 3px 0px 3px"
+            }} className="btn btn-primary btn-sm pull-right" onClick={this.save.bind(this)}>{"next >>"}</button>
 
-            <button
-              style={{display:"inline-block", margin:"0px 3px 0px 3px"}}
-              className="btn btn-primary btn-sm pull-right"
-              onClick={() => this.props.onPrevious()}>{"<< Previous"}</button>
-            </div>
+            <button style={{
+              display: "inline-block",
+              margin: "0px 3px 0px 3px"
+            }} className="btn btn-primary btn-sm pull-right" onClick={() => this.props.onPrevious()}>{"<< Previous"}</button>
           </div>
+        </div>
         <hr></hr>
 
-        <Form
-          ref="form"
-          value={this.state.defaultConfig}
-          type={mapConfig}
-          options={options} />
+        <Form ref="form" value={this.state.defaultConfig} type={mapConfig} options={options}/>
       </div>
     )
   }
