@@ -6,11 +6,15 @@ info = {
     "author": 'Cartologic',
     "home_page": 'http://cartologic.com/cartoview/apps/cartoview_webapp_builder',
     "help_url": "http://cartologic.com/cartoview/apps/cartoview_webapp_builder/help/",
-    "tags": ['map', 'viewer', 'webapp_builder', 'geonode', 'boundless_sdk'],
+    "tags": [
+        'map',
+        'viewer',
+        'webapp_builder',
+        'geonode',
+        'boundless_sdk'],
     "licence": 'BSD',
     "author_website": "http://www.cartologic.com",
-    "single_instance": False
-}
+    "single_instance": False}
 
 
 def install():
