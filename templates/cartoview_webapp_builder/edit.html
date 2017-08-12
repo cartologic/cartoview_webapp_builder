@@ -26,17 +26,34 @@
     <script src="{{ STATIC_URL }}cartoview_webapp_builder/dist/config.bundle.js"></script>
     <script>
 
-  {% if instance %}
-  var appConfig = {{ instance.config|escape|safe }};
-  var abstract = " {% spaceless %}{{ instance.abstract|title }}{% endspaceless %} ";
-  var title = "{{ instance.title }}";
-  var map_id={{instance.map_id}};
-  var instance_id={{instance.id}};
-  var geoserver_url = "{{ GEOSERVER_BASE_URL }}";
-  var abstract = " {% spaceless %}{{ instance.abstract|title }}{% endspaceless %} ";
-  {% endif %}
-    var username="{{instance.owner.username}}"
-    var viewer=new Viewer('root',{'instance':{map:{id:map_id,title:title,abstract:abstract},id:instance_id,config:appConfig},'urls':{'resources_url':"/api/maps","view":"/apps/cartoview_webapp_builder/"+instance_id+"/view/"},'limit':9},username);
+    {% if instance %}
+    var appConfig = {{ instance.config|escape|safe }};
+    var abstract = " {% spaceless %}{{ instance.abstract|title }}{% endspaceless %} ";
+    var title = "{{ instance.title }}";
+    var map_id={{instance.map_id}};
+    var instance_id={{instance.id}};
+    var geoserver_url = "{{ GEOSERVER_BASE_URL }}";
+    var abstract = " {% spaceless %}{{ instance.abstract|title }}{% endspaceless %} ";
+    var keywords = {{keywords|safe}}
+    {% endif %}
+
+    var username = "{{instance.owner.username}}";
+    var viewer = new Viewer('root', {
+      'instance': {
+        map: {
+          id: map_id,
+          title: title,
+          abstract: abstract
+        },
+        id: instance_id,
+        config: appConfig
+      },
+      'urls': {
+        'resources_url': "/api/maps",
+        "view": "/apps/cartoview_webapp_builder/" + instance_id + "/view/"
+      },
+      'limit': 9
+    }, username, keywords);
     viewer.view();
     </script>
     <div id="myModal" class="modal fade" role="dialog">
