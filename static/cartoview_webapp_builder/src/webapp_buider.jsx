@@ -1,53 +1,56 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import ol from 'openlayers';
 import './map'
-import {IntlProvider} from 'react-intl';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import CustomTheme from './theme';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import AppBar from 'material-ui/AppBar';
-import ContentAdd from 'material-ui/svg-icons/action/view-list';
-import MapConfig from '@boundlessgeo/sdk/components/MapConfig';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
-import {Tabs, Tab} from 'material-ui/Tabs';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import ImageExport from '@boundlessgeo/sdk/components/ImageExport';
-import Geocoding from '@boundlessgeo/sdk/components/Geocoding';
-import AddLayerModal from '@boundlessgeo/sdk/components/AddLayerModal';
-import CartoviewAbout from './cartoview_about';
-import EditPopup from '@boundlessgeo/sdk/components/EditPopup';
-import GeocodingResults from '@boundlessgeo/sdk/components/GeocodingResults';
-import Geolocation from '@boundlessgeo/sdk/components/Geolocation';
-import Globe from '@boundlessgeo/sdk/components/Globe';
-import HomeButton from '@boundlessgeo/sdk/components/HomeButton';
-import InfoPopup from '@boundlessgeo/sdk/components/InfoPopup';
-import LayerList from '@boundlessgeo/sdk/components/LayerList';
-import LoadingPanel from '@boundlessgeo/sdk/components/LoadingPanel';
-import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
-import Measure from '@boundlessgeo/sdk/components/Measure';
-import Playback from '@boundlessgeo/sdk/components/Playback';
-import QGISPrint from '@boundlessgeo/sdk/components/QGISPrint';
-import QueryBuilder from '@boundlessgeo/sdk/components/QueryBuilder';
-import Rotate from '@boundlessgeo/sdk/components/Rotate';
-import DrawFeature from '@boundlessgeo/sdk/components/DrawFeature';
-import Zoom from '@boundlessgeo/sdk/components/Zoom';
-import BaseMapModal from '@boundlessgeo/sdk/components/BaseMapModal';
-import '@boundlessgeo/sdk/dist/css/components.css';
-import IconButton from 'material-ui/IconButton';
-import MapConfigTransformService from '@boundlessgeo/sdk/services/MapConfigTransformService';
-import MapConfigService from '@boundlessgeo/sdk/services/MapConfigService';
-import './app.css';
-import RaisedButton from 'material-ui/RaisedButton';
-import Select from '@boundlessgeo/sdk/components/Select';
-import Navigation from '@boundlessgeo/sdk/components/Navigation';
-import Paper from 'material-ui/Paper';
-import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable';
-import Header from '@boundlessgeo/sdk/components/Header';
-import Button from '@boundlessgeo/sdk/components/Button';
-import FlatButton from 'material-ui/FlatButton';
-import Dialog from 'material-ui/Dialog';
+import '@boundlessgeo/sdk/dist/css/components.css'
+import './app.css'
+
+import {Tab, Tabs} from 'material-ui/Tabs'
+import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar'
+
+import AddLayerModal from '@boundlessgeo/sdk/components/AddLayerModal'
+import AppBar from 'material-ui/AppBar'
+import BaseMapModal from '@boundlessgeo/sdk/components/BaseMapModal'
+import Button from '@boundlessgeo/sdk/components/Button'
+import CartoviewAbout from './cartoview_about'
+import ContentAdd from 'material-ui/svg-icons/action/view-list'
+import CustomTheme from './theme'
+import Dialog from 'material-ui/Dialog'
+import DrawFeature from '@boundlessgeo/sdk/components/DrawFeature'
+import EditPopup from '@boundlessgeo/sdk/components/EditPopup'
+import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable'
+import FlatButton from 'material-ui/FlatButton'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import Geocoding from '@boundlessgeo/sdk/components/Geocoding'
+import GeocodingResults from '@boundlessgeo/sdk/components/GeocodingResults'
+import Geolocation from '@boundlessgeo/sdk/components/Geolocation'
+import Globe from '@boundlessgeo/sdk/components/Globe'
+import Header from '@boundlessgeo/sdk/components/Header'
+import HomeButton from '@boundlessgeo/sdk/components/HomeButton'
+import IconButton from 'material-ui/IconButton'
+import ImageExport from '@boundlessgeo/sdk/components/ImageExport'
+import InfoPopup from '@boundlessgeo/sdk/components/InfoPopup'
+import {IntlProvider} from 'react-intl'
+import LayerList from '@boundlessgeo/sdk/components/LayerList'
+import LoadingPanel from '@boundlessgeo/sdk/components/LoadingPanel'
+import MapConfig from '@boundlessgeo/sdk/components/MapConfig'
+import MapConfigService from '@boundlessgeo/sdk/services/MapConfigService'
+import MapConfigTransformService from '@boundlessgeo/sdk/services/MapConfigTransformService'
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel'
+import Measure from '@boundlessgeo/sdk/components/Measure'
+import Navigation from '@boundlessgeo/sdk/components/Navigation'
+import Paper from 'material-ui/Paper'
+import Playback from '@boundlessgeo/sdk/components/Playback'
+import PropTypes from 'prop-types'
+import QGISPrint from '@boundlessgeo/sdk/components/QGISPrint'
+import QueryBuilder from '@boundlessgeo/sdk/components/QueryBuilder'
+import RaisedButton from 'material-ui/RaisedButton'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Rotate from '@boundlessgeo/sdk/components/Rotate'
+import Select from '@boundlessgeo/sdk/components/Select'
+import Zoom from '@boundlessgeo/sdk/components/Zoom'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import ol from 'openlayers'
+
 injectTapEventPlugin();
 
 let printLayouts = [
@@ -373,7 +376,7 @@ class CartoviewViewer extends React.Component {
       <div id='content'>
         {error}
         {app_toolbar}
-        <MapPanel useHistory={true} id='map' map={map}>
+        <MapPanel useHistory={false} id='map' map={map}>
           {load}
         </MapPanel>
         <div style={{

@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import CartoviewViewer from './webapp_buider';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 class CartoviewViewerDebug extends React.Component {
     constructor(props) {
